@@ -1,5 +1,5 @@
 #include "imports/stdlib.fc";
-;; test contract
+;; test contract st
 
 const const::min_tons_for_storage = 10000000; ;; 0.01 TON
 
