@@ -7,7 +7,8 @@ import { Blockchain,
 import { MainContract } from "../wrappers/MainContract";
 import "@ton/test-utils";
 import { buffer } from "stream/consumers";
-import { compile } from "@ton/blueprint";
+
+// import { compile } from "@ton-community/blueprint";
 
 describe("main.fc contract tests", () => {
   let blockchain: Blockchain;
@@ -16,14 +17,16 @@ describe("main.fc contract tests", () => {
   let ownerWallet: SandboxContract<TreasuryContract>;
   let codeCell: Cell;
 
- beforeAll(async () => {
-   codeCell = await compile("MainContract");
- });
+ // beforeAll(async () => {
+ //   codeCell = await compile("MainContract");
+ // });
 
   beforeEach(async () => {
     blockchain = await Blockchain.create();
     initWallet = await blockchain.treasury("initWallet");
     ownerWallet = await blockchain.treasury("ownerWallet");
+
+    const codeCell = Cell.fromBoc(Buffer.from(hex, "hex"))[0];
 
     myContract = blockchain.openContract(
       await MainContract.createFromConfig(

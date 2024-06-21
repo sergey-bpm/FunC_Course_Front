@@ -8,6 +8,7 @@ import {
    Sender,
    SendMode
  } from "@ton/core";
+import { CompilerConfig } from "@ton/blueprint";
 
 export type MainContractConfig = {
   number: number;
@@ -47,7 +48,7 @@ export class MainContract implements Contract {
       sendMode: SendMode.PAY_GAS_SEPARATELY,
       body: beginCell().endCell(),
     });
-  }
+}
 
   async sendIncrement(
     provider: ContractProvider,

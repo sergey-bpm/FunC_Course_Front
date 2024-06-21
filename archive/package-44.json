@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest"
+    "compile": "ts-node ./scripts/compile.ts",
+    "test": "npm run compile && npx jest",
+    "deploy": "npm run compile && cross-env TESTNET=true npx ts-node ./scripts/deploy.ts",
+    "deploy:mainnet": "npm run compile && npx ts-node ./scripts/deploy.ts",
+    "onchaintest": "cross-env TESTNET=true npx ts-node ./scripts/onchaintest.ts",
+    "onchaintest:mainnet": "npx ts-node ./scripts/onchaintest.ts"
   },
-
   "author": "",
   "license": "ISC",
   "description": "",
