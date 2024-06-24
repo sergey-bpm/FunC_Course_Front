@@ -13,7 +13,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 //   </TonConnectUIProvider>,
 // )
 
-const manifestUrl = 'https://sergey-bpm.github.io/FunC-Course-Front/tonconnect-manifest.json';
+const manifestUrl = 'https://raw.githubusercontent.com/sergey-bpm/FunC_Course_Front/78153ec20b668d621dea756f1a8046c490696912/tonconnect-manifest.json';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <>
