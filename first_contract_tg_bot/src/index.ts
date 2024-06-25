@@ -28,7 +28,7 @@ bot.hears ("Increment by 1", (ctx) => {
       .storeUint(1, 32) // increment_by value
       .endCell();
 
-    let link = `https://test.tonhub.com/transfer/${process.env.SC_ADDRESS}?${qs.stringify({
+    let link = `https://app.tonkeeper.com/transfer/${process.env.SC_ADDRESS}?${qs.stringify({
         text: "Increment counter by 1",
         amount: toNano("0.05").toString(10),
         bin: msg_body.toBoc({ idx: false }).toString("base64"),
@@ -56,7 +56,7 @@ bot.hears ("Increment by 1", (ctx) => {
     }?${qs.stringify(
         {
             text: "Deposit 0.6 TON",
-            amount: toNano("0.6").toString(10),
+            amount: toNano("0.05").toString(10),
             bin: msg_body.toBoc({ idx: false}).toString("base64"),
         }
     )}`;
