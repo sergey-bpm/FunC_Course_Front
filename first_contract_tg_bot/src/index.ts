@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 import { Telegraf } from "telegraf";
+import { beginCell, toNano } from "ton-core";
+import qs from "qs";
 
 dotenv.config();
 
@@ -17,19 +19,39 @@ bot.start((ctx) =>
     })
   );
 
-  bot.hears("Increment by 1", (ctx) => {
-    // TODO: send increment transaction
-    ctx.reply ("Increment by 1");
+  bot.hears ("Increment by 1", (ctx) => {
+
+    const msg_body = beginCell()
+      .storeUint(1, 32) // OP code
+      .storeUint(1, 32) // increment_by value
+      .endCell();
+
+    let link = `https://test.tonhub.com/transfer/${process.env.SC_ADDRESS}?${qs.stringify({
+        text: "Increment counter by 1",
+        amount: toNano("0.05").toString(10),
+        bin: msg_body.toBoc({ idx: false }).toString("base64"),
+  })}`;
+
+  ctx.reply("To increment counter by 1, please sign a transaction:", {
+    reply_markup: {
+        inline_keyboard: [
+            [{
+                text: "Sign transaction",
+                url: link,
+            }]
+        ]
+    }
   });
+});
 
   bot.hears("Deposit 0.6 TON", (ctx) => {
     // TODO: send deposit transaction
-    ctx.reply("Deposit 0.6 TON");
+    ctx.reply("Deposited 0.6 TON");
   });
   
   bot.hears ("Withdraw 0.2 TON", (ctx) => {
     // TODO: send withdraw transaction
-    ctx.reply("Withdrawn 0.2 TON");
+    ctx.reply("Withdrew 0.2 TON");
   });
 
   bot.launch();
